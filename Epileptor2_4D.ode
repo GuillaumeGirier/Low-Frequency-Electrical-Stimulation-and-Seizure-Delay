@@ -1,0 +1,63 @@
+# Epileptor 2
+
+# ODE equations
+v'=(u-gl*v+Isyn+A)/taum
+xD'=(1-xD)/taux-deltax*xD*vi
+Ko'=(Kbath-Ko)/tauK-2*gamma*Ipi+deltaK*vi
+Nai'=(Nai0-Nai)/tauNa-3*Ipi+deltaNa*vi
+
+# Complementary equations
+
+vi=vmax*1./(1 + exp(Vth - v))
+u=gK*26.6*log(Ko/Ko0)+G_syn*vi*xD
+Isyn = gsyn * Ssyn * (Vsyn - v)
+
+Ipi=rho/((1+exp(3.5-Ko))*(1+exp((25-Nai)/3)))
+
+
+# Parameters
+par A=0
+par Kbath=0.5
+par Ko0=3.0
+par tauK=17.5 
+par tauNa=35.0
+par tauM=0.002  
+par taux=2  
+
+par deltaK=0.02
+par deltaNa=0.03
+par deltax=0.01
+par rho=0.1142
+par gamma=10.
+
+# input terms devided by gL
+par G_syn=0.3 
+par gK=0.5
+
+# V
+par Nai0=10.
+par vmax=75
+par Vth=10.
+par gl=1.
+
+# Isyn
+par Vsyn=-15
+par Ssyn=1
+par gsyn=0.1686
+
+# Initial Conditions
+init v=1, xD=1, Ko=8, Nai=10
+
+# numerics
+@ total=1000,dt=0.001
+@ meth=rk4
+@ xp=xD,yp=v, xlo=0,xhi=10,ylo=-120,yhi=120
+@ bounds=9000000, maxstor=9000000
+
+# parametres de continuation
+@ autoxmin=-5,autoxmax=100,autoymin=-5,autoymax=100
+@ nmax=20000,npr=5,ntst=25
+@ ds=1e-05,dsmin=1e-10, dsmax=0.01
+@ parmin=-200,parmax=200,normmax=10000
+@ epsl=1e-06,epsu=1e-05,epss=1e-05
+done

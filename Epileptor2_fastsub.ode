@@ -1,0 +1,48 @@
+# Epileptor 2
+
+# ODE equations
+v'=(u-gl*v+I+Isyn)/taum
+xD'=(1-xD)/taux-deltax*xD*vi
+
+# Complementary equations
+
+vi=vmax*1./(1+exp(Vth-v))
+u=gK*26.6*log(Ko/Ko0)+G_syn*vi*xD
+Isyn=gei*Si*(Vsyn-V)
+
+
+
+# Parameters
+
+par Ko=1
+par I=0
+par Ko0=3
+par taum=0.002  
+par taux=2  
+par deltax=0.01
+par G_syn=0.3 
+par gK=0.5
+par vmax=75
+par Vth=10.
+par gl=1.
+par Vsyn=-15
+par Si=1
+par gei=0.1686
+
+# Initial Conditions
+init v=25, xD=0.7
+
+# numerics
+@ total=1000,dt=0.001
+@ meth=rk4
+@ xp=xD,yp=v, xlo=0,xhi=2,ylo=-50,yhi=50
+@ bounds=9000000, maxstor=9000000
+
+# parametres de continuation
+@ autoxmin=-5,autoxmax=100,autoymin=-5,autoymax=100
+@ nmax=1000,npr=5,ntst=25
+@ ds=1e-01,dsmin=1e-03, dsmax=1e-01
+@ parmin=-200,parmax=200,normmax=10000
+@ epsl=1e-06,epsu=1e-05,epss=1e-05
+
+done
