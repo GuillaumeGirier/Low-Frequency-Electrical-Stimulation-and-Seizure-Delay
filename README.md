@@ -67,8 +67,11 @@ In this github, several notebooks are proposed:
 ## Prerequisites :
 
 Python : v. 3.12.4
+
 Numpy : v. 1.26.0
+
 Matplolib : v. 3.9.2
+
 Scipy : v. 1.13.1
 
 ## Bibliography :
