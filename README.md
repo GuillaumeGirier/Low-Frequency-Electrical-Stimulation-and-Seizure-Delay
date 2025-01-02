@@ -43,13 +43,13 @@ where $\xi$ is random samples from a normal (Gaussian) distribution. (contain be
 
 ### Adding the inhibitory current :
 
-To show the delay between ictal phases, and therefore the phenomenon of depolarization during stimulation, then repolarization at the end of the spike train, we add an additional inhibitory term $I_{syn}$ defined as follows [2]:
+To show the delay between ictal phases, and therefore the phenomenon of depolarization during stimulation, then repolarization at the end of the spike train, we add an additional inhibitory term $I_{inh}$ defined as follows [2]:
 
 $$
-    Isyn = g \cdot S_i \cdot (V_{syn} - V)
+    I_{inh} = g_{inh} \cdot S_{inh} \cdot (V_{inh} - V)
 $$
 
-We suppose the existence of a passive population connected to the studied excitatory population, with the conductance, $g$, and a gating parameter, $S_i$.
+We suppose the existence of a passive population connected to the studied excitatory population, with the conductance, $g_{inh}$, and a gating parameter, $S_{inh}$.
 
 ## Repository organization :
 
