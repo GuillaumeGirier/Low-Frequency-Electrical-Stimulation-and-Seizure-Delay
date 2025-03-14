@@ -13,7 +13,7 @@ The biological mechanisms underlying the spontaneous and recurrent transition to
 We chose a modified version of the Epileptor-2 model [1]:
 
 $$
-  \tau_m \cdot \frac{dV}{dt} = u(V,x_{\textup D},[K^+]_{\textup o})-g_{\textup L} V+ g_{\textup{stim}} I_{\textup{stim}}(t),\\
+  \tau_m \cdot \frac{dV}{dt} =\\
 $$
 
 $$
