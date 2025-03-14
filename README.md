@@ -6,25 +6,22 @@ Contact : guillaumegirier@gmail.com
 
 ## Abstract :
 
-The biological mechanisms underlying recurring seizures in the epileptic brain remain poorly understood. \Helmut{As} a consequence of that, a substantial proportion of patients can not be sufficiently treated by the currently available treatment approaches for epilepsy.  Emerging brain stimulation protocols have been shown to successfully reduce the seizure rate. However, their success critically depends on chosen stimulation parameters, such as the time point, amplitude and frequency of stimulation. This study integrates experimental and computational insights to provide a framework for understanding seizure dynamics and stimulation protocols, offering new perspectives for therapeutic strategies, focusing on the seizure delaying effect of 1 Hz stimulation. We study this effect using a modified version of the Epileptor-2 model, in close comparison with a real dataset of local field potential recordings from four hippocampal rat brain slices under high potassium condition, which is a commonly used animal model of epilepsy. In particular, we investigate 1) the emergence of spontaneous seizure transitions, 2) the seizure-delaying effect of the stimulation, and 3) the optimal stimulation parameters to achieve the anti-seizure effect. We find that the modified Epileptor-2 model reproduces key experimental observations, capturing seizure dynamics and the anti-seizure effects of low-frequency electrical stimulation (LFES). The model identifies critical thresholds for seizure onset and demonstrates that effective LFES requires stimulation parameters—timing, amplitude, and duration—that exceed specific thresholds to delay seizures without triggering premature activity. Our analysis highlights the central role of sodium-potassium pump dynamics in terminating seizures and mediating the LFES effect, providing a mechanistic framework to optimize stimulation protocols and deepen our understanding of epilepsy treatment strategies.
+The biological mechanisms underlying the spontaneous and recurrent transition to seizures in the epileptic brain are still poorly understood. As a result, seizures remain uncontrolled in a substantial proportion of patients with drug-refractory epilepsy. Brain stimulation is an emerging and promising method to treat various brain disorders, including drug-refractory epilepsy. Selected stimulation protocols demonstrated therapeutic efficacy in reducing the seizure rate successfully. The stimulation efficacy critically depends on chosen stimulation parameters, such as the time point, amplitude, and frequency of stimulation. This study aims to explore the neurobiological impact of 1 Hz stimulation and provide the mechanistic explanation behind its seizure-delaying and seizure-suppressing effects. We study this effect using a computational model, a modified version of the Epileptor-2 model, in close comparison with spontaneous seizures recorded \textit{in vitro} in a high-potassium model of ictogenesis in rat hippocampal slices.  In particular, we investigate 1) the mechanisms and dynamics of spontaneous seizure emergence, 2) the seizure-delaying effect of the stimulation, and 3) the optimal stimulation parameters to achieve the maximal anti-seizure effect. We show that the modified Epileptor-2 model can replicates key experimental observations and captures seizure dynamics and the anti-seizure effects of low-frequency electrical stimulation (LFES) observed in hippocampal slices. We identify the critical thresholds in the model for seizure onset and determine the optimal stimulation parameters—timing, amplitude, and duration—that exceed specific thresholds to delay seizures without triggering premature seizures. Our study highlights the central role of sodium-potassium pump dynamics in terminating seizures and mediating the LFES effect. The obtained results pave the road to a mechanistic framework to optimize stimulation protocols and deepen our understanding of brain stimulation to design new and effective brain stimulation strategies to treat epilepsy.
 
 ## Model :
 
-This work is inspired by the Epileptor-2 model [1].
-
-We define the differential equation system as follows :
-
+We chose a modified version of the Epileptor-2 model [1]:
 $$
-  \tau_m \cdot \frac{dV}{dt} = u(V,xD,Ko)-gl \cdot V+ I_{syn} + I_{ext}\\
+  \tau_m \cdot \frac{dV}{dt} = u(V,x_{\textup D},[K^+]_{\textup o})-g_{\textup L} V+ g_{\textup{stim}} I_{\textup{stim}}(t),\\
 $$
 $$
-  \frac{dxD}{dt} = \frac{(1-xD)}{\tau_x} - \delta_x \cdot xD \cdot vi(V) \\
+  \frac{dxD}{dt} = \frac{(1-x_{\textup D})}{\tau_x} - \delta_x   x_{\textup D}   \upsilon_i(V), \\
 $$
 $$
-  \frac{dKo}{dt} = \frac{Kbath-Ko}{\tau_{Ko}} -2 \cdot \gamma \cdot Ipump(Ko,Na)+ delta_{Ko} \cdot vi(V)\\
+  \frac{d [K^+]_{_{\textup o}}}{dt} = \frac{\K_{\textup{bath}}-[K^+]_{_{\textup o}}}{\tau_{K}} -2   \gamma   I_{\textup{pump}}([K^+]_{\textup o},[Na]_{\textup i})+ \delta_{K}   \upsilon_i(V),\\
 $$
 $$
-  \frac{dNai}{dt} = \frac{Nai_0-Nai}{\tau_{Nai}} -3 \cdot Ipump(Ko,Nai)+delta_{Nai} \cdot vi(V) \\
+  \frac{d[Na^+]_{_{\textup i}}}{dt} = \frac{[Na^+]_{\textup i}^0-[Na^+]_{\textup i}}{\tau_{Na}} -3   I_{\textup{pump}}([K^+]_{\textup o},[Na^+]_{\textup i})+\delta_{Na}   \upsilon_i(V), \\
 $$
 
 where Ko and Nai represent extracellular potassium and intraneuronal sodium concentrations, respectively; V is the membrane depolarization; xD is the synaptic resource; vi(t) is the firing rate of an excitatory population. We define the additional equations as follows :
