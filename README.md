@@ -51,10 +51,10 @@ $$
 
 with $g_{inh}$ being the conductance of inhibitory synapses, and $V_{inh}$ their reversal potential.
 
-The firing rate function $\upsilon_i(V)$ is chosen to be a sigmoid function with threshold $V_{th}$ and maximum firing rate $upsn_{max}$:
+The firing rate function $\upsilon_i(V)$ is chosen to be a sigmoid function with threshold $V_{th}$ and maximum firing rate $upsilonn_{max}$:
 
 $$
-    ups_i(V) &= \frac{ups_{max}}{1+\e^{V_{th}-V}}.\\
+    upsilon_i(V) &= \frac{upsilon_{max}}{1+e^{V_{th}-V}}.\\
 $$
 
 The excitatory population is also subjected to low-frequency stimulation, $I_{stim}(t)$. 
@@ -64,7 +64,7 @@ The parameter $g_{stim}$ was added to ensure dimensional consistency within the 
 Lastly, the activity of the Na-K pump is computed as follows:
 
 $$
-    I_{pump}(Ko,Nai) &=  \frac{\rho}{(1+\e^{3.5-Ko}) (1+\e^{(25.0-Nai)/3})}. \\
+    I_{pump}(Ko,Nai) &=  \frac{\rho}{(1+\e^{3.5-Ko}) (1+e^{(25.0-Nai)/3})}. \\
 $$
 
 ## Repository organization :
