@@ -13,7 +13,7 @@ The biological mechanisms underlying the spontaneous and recurrent transition to
 We chose a modified version of the Epileptor-2 model [1]:
 
 $$
-  \tau_m \cdot \frac{dV}{dt} = u(V,x_{\textup D},{\textup o})-g_{\textup L} V + g_{\textup{stim}} I_{\textup{stim}}(t),\\
+  \tau_m \cdot \frac{dV}{dt} = u(V,x_{\textup D},Ko)-g_{\textup L} V + g_{\textup{stim}} I_{\textup{stim}}(t),\\
 $$
 
 $$
@@ -21,11 +21,11 @@ $$
 $$
 
 $$
-  \frac{d [K^+]_{_{\textup o}}}{dt} = \frac{\K_{\textup{bath}}-[K^+]_{_{\textup o}}}{\tau_{K}} -2   \gamma   I_{\textup{pump}}([K^+]_{\textup o},[Na]_{\textup i})+ \delta_{K}   \upsilon_i(V),\\
+  \frac{d Ko}{dt} = \frac{\K_{\textup{bath}}-Ko}{\tau_{K}} -2   \gamma   I_{\textup{pump}}(Ko,Nai)+ \delta_{K}   \upsilon_i(V),\\
 $$
 
 $$
-  \frac{d[Na^+]_{_{\textup i}}}{dt} = \frac{[Na^+]_{\textup i}^0-[Na^+]_{\textup i}}{\tau_{Na}} -3   I_{\textup{pump}}([K^+]_{\textup o},[Na^+]_{\textup i})+\delta_{Na}   \upsilon_i(V), \\
+  \frac{dNai}{dt} = \frac{Nai^0-Nai}{\tau_{Na}} -3   I_{\textup{pump}}(Ko,Nai)+\delta_{Na}   \upsilon_i(V), \\
 $$
 
 where Ko and Nai represent extracellular potassium and intraneuronal sodium concentrations, respectively; V is the membrane depolarization; xD is the synaptic resource; vi(t) is the firing rate of an excitatory population. We define the additional equations as follows :
