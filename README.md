@@ -64,7 +64,7 @@ The parameter $g_{stim}$ was added to ensure dimensional consistency within the 
 Lastly, the activity of the Na-K pump is computed as follows:
 
 $$
-    I_{pump}(Ko,Nai) =  \frac{\rho}{(1+\e^{3.5-Ko}) (1+e^{(25.0-Nai)/3})}. \\
+    I_{pump}(Ko,Nai) =  \frac{\rho}{(1+e^{3.5-Ko}) (1+e^{(25.0-Nai)/3})}. \\
 $$
 
 ## Repository organization :
