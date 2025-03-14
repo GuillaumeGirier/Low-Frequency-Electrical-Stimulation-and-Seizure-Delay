@@ -51,10 +51,10 @@ $$
 
 with $g_{inh}$ being the conductance of inhibitory synapses, and $V_{inh}$ their reversal potential.
 
-The firing rate function $\upsilon_i(V)$ is chosen to be a sigmoid function with threshold $V_{th}$ and maximum firing rate $\upsilon_{max}$:
+The firing rate function $\upsilon_i(V)$ is chosen to be a sigmoid function with threshold $V_{th}$ and maximum firing rate $upsn_{max}$:
 
 $$
-    \upsilon_i(V) &= \frac{\upsilon_{max}}{1+\e^{V_{th}-V}}.\\
+    ups_i(V) &= \frac{ups_{max}}{1+\e^{V_{th}-V}}.\\
 $$
 
 The excitatory population is also subjected to low-frequency stimulation, $I_{stim}(t)$. 
