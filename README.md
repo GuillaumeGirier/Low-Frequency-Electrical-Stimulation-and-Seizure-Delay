@@ -31,31 +31,38 @@ $$
 where $V$ is the average membrane potential of pyramidal cells, $x_{\textup D}$ is the synaptic resource, and $Ko$ and $Nai$ are the extracellular potassium and intracellular sodium concentrations, respectively. 
 
 The membrane potential $V$ is driven by the potassium concentration $Ko$ and synaptic input, which is concisely expressed by
+
 $$
     u(V,x_{\textup D},Ko) = g_K  26.6 \text{mV}  \log \left ( \frac{Ko}{Ko^0} \right )+I_{exc}(V,x_{\textup D}) + I_{inh}(V),
 $$
 
 where the first term is the potassium depolarizing current, and $I_{exc}$ and $I_{inh}$ are the excitatory and inhibitory synaptic inputs to the excitatory population. The excitatory synaptic input $I_{exc}$ is defined as:
+
 $$
     I_{exc} (V,x_{\textup D}) = g_{exc} \upsilon_i(V) x_{\textup D},
 $$
 
 with $g_{exc}$ being the conductance of excitatory synapses, and $\upsilon_i(V)$ being the firing rate of the excitatory population.
 The inhibitory synaptic input $I_{inh}$ is defined as [2]:
+
 $$
     I_{inh} (V) = g_{inh}   (V_{inh} - V),
 $$
+
 with $g_{inh}$ being the conductance of inhibitory synapses, and $V_{inh}$ their reversal potential.
 
 The firing rate function $\upsilon_i(V)$ is chosen to be a sigmoid function with threshold $V_{th}$ and maximum firing rate $\upsilon_{max}$:
+
 $$
     \upsilon_i(V) &= \frac{\upsilon_{max}}{1+\e^{V_{th}-V}}.\\
 $$
+
 The excitatory population is also subjected to low-frequency stimulation, $I_{stim}(t)$. 
 Each stimulus is represented by a Dirac delta function, and the sequence of stimuli thus reads $I_{stim}(t) = A \sum_n \delta(t-t_n)$, where $t_n$ represents stimulation times (every 1s in our protocol), and $A$ is the stimulation amplitude. 
 The parameter $g_{stim}$ was added to ensure dimensional consistency within the model, thereby preserving the physical coherence of the equations and their underlying biophysical interpretation.
 
 Lastly, the activity of the Na-K pump is computed as follows:
+
 $$
     I_{pump}(Ko,Nai) &=  \frac{\rho}{(1+\e^{3.5-Ko}) (1+\e^{(25.0-Nai)/3})}. \\
 $$
