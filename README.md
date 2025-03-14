@@ -21,36 +21,44 @@ $$
 $$
 
 $$
-  \frac{d Ko}{dt} = \frac{\K_{\textup{bath}}-Ko}{\tau_{K}} -2   \gamma   I_{\textup{pump}}(Ko,Nai)+ \delta_{K}   \upsilon_i(V),\\
+  \frac{d Ko}{dt} = \frac{K_{\textup{bath}}-Ko}{\tau_{K}} -2   \gamma   I_{\textup{pump}}(Ko,Nai)+ \delta_{K}   \upsilon_i(V),\\
 $$
 
 $$
   \frac{dNai}{dt} = \frac{Nai^0-Nai}{\tau_{Na}} -3   I_{\textup{pump}}(Ko,Nai)+\delta_{Na}   \upsilon_i(V), \\
 $$
 
-where Ko and Nai represent extracellular potassium and intraneuronal sodium concentrations, respectively; V is the membrane depolarization; xD is the synaptic resource; vi(t) is the firing rate of an excitatory population. We define the additional equations as follows :
+where $V$ is the average membrane potential of pyramidal cells, $x_{\textup D}$ is the synaptic resource, and $Ko$ and $Nai$ are the extracellular potassium and intracellular sodium concentrations, respectively. 
 
+The membrane potential $V$ is driven by the potassium concentration $Ko$ and synaptic input, which is concisely expressed by
 $$
-    vi(V) = vmax \cdot \frac{1}{1+e^{Vth-V}}\\
-$$
-$$
-    u(V,xD,Ko) = gK\cdot 26.6\cdot \log(\frac{Ko}{Ko0})+G_{syn}\cdot vi(V)\cdot (xD-0.5)+ \sigma \cdot  \xi \\
-$$
-$$
-    Ipump(Ko,Nai) =  \frac{\rho}{(1+e^{3.5-Ko})\cdot(1+e^{(25.0-Nai)/3})} \\
+    u(V,x_{\textup D},Ko) = g_K  26.6 \text{mV}  \log \left ( \frac{Ko}{Ko^0} \right )+I_{exc}(V,x_{\textup D}) + I_{inh}(V),
 $$
 
-where $\xi$ is random samples from a normal (Gaussian) distribution. (contain between 0 and 1)
-
-### Adding the inhibitory current :
-
-To show the delay between ictal phases, and therefore the phenomenon of depolarization during stimulation, then repolarization at the end of the spike train, we add an additional inhibitory term $I_{inh}$ defined as follows [2]:
-
+where the first term is the potassium depolarizing current, and $I_{exc}$ and $I_{inh}$ are the excitatory and inhibitory synaptic inputs to the excitatory population. The excitatory synaptic input $I_{exc}$ is defined as:
 $$
-    I_{inh} = g_{inh} \cdot S_{inh} \cdot (V_{inh} - V)
+    I_{exc} (V,x_{\textup D}) = g_{exc} \upsilon_i(V) x_{\textup D},
 $$
 
-We suppose the existence of a passive population connected to the studied excitatory population, with the conductance, $g_{inh}$, and a gating parameter, $S_{inh}$.
+with $g_{exc}$ being the conductance of excitatory synapses, and $\upsilon_i(V)$ being the firing rate of the excitatory population.
+The inhibitory synaptic input $I_{inh}$ is defined as [2]:
+$$
+    I_{inh} (V) = g_{inh}   (V_{inh} - V),
+$$
+with $g_{inh}$ being the conductance of inhibitory synapses, and $V_{inh}$ their reversal potential.
+
+The firing rate function $\upsilon_i(V)$ is chosen to be a sigmoid function with threshold $V_{th}$ and maximum firing rate $\upsilon_{max}$:
+$$
+    \upsilon_i(V) &= \frac{\upsilon_{max}}{1+\e^{V_{th}-V}}.\\
+$$
+The excitatory population is also subjected to low-frequency stimulation, $I_{stim}(t)$. 
+Each stimulus is represented by a Dirac delta function, and the sequence of stimuli thus reads $I_{stim}(t) = A \sum_n \delta(t-t_n)$, where $t_n$ represents stimulation times (every 1s in our protocol), and $A$ is the stimulation amplitude. 
+The parameter $g_{stim}$ was added to ensure dimensional consistency within the model, thereby preserving the physical coherence of the equations and their underlying biophysical interpretation.
+
+Lastly, the activity of the Na-K pump is computed as follows:
+$$
+    I_{pump}(Ko,Nai) &=  \frac{\rho}{(1+\e^{3.5-Ko}) (1+\e^{(25.0-Nai)/3})}. \\
+$$
 
 ## Repository organization :
 
