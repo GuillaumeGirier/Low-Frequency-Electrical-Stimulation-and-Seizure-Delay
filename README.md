@@ -1,4 +1,4 @@
-# Low-Frequency Electrical Stimulation and interseizure delay: a biophysical and mathematical representation (PYTHON/XPPAUT)
+# Ion Dynamics Underlying the Seizure Delay Effect of Low-Frequency Electrical Stimulation (PYTHON/XPPAUT)
 
 Authors : G. Girier, I. Dallmer-Zerbe, J. Chvojka, J. Kudlacek, P. Jiruska, J. Hlinka H. Schmidt.
 
